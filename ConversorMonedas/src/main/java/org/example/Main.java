@@ -13,7 +13,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        // Primero obtenemos el JSON de la API
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://v6.exchangerate-api.com/v6/d8c5074519a810db9327b05a/latest/USD"))
@@ -23,7 +22,7 @@ public class Main {
         JsonObject jsonObject = JsonParser.parseString(response.body()).getAsJsonObject();
         JsonObject conversionRates = jsonObject.getAsJsonObject("conversion_rates");
 
-        // Obtenemos los valores que vamos a usar
+        //Valores
         double usdToArs = conversionRates.get("ARS").getAsDouble();
         double usdToBrl = conversionRates.get("BRL").getAsDouble();
         double usdToCop = conversionRates.get("COP").getAsDouble();
